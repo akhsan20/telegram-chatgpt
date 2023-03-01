@@ -26,15 +26,20 @@ def start_filter(message):
     #end chat gpt
     bot.send_message(message.chat.id, answer) #send response
 
-# Check if message starts with @admin tag
-@bot.message_handler(text_startswith="@admin")
+@bot.message_handler(text_startswith="img")
 def start_filter(message):
-    bot.send_message(message.chat.id, "Looks like you are calling admin, wait...")
-
-# Check if text is hi or hello
-@bot.message_handler(text=['hi','hello'])
-def text_filter(message):
-    bot.send_message(message.chat.id, "Hi, {name}!".format(name=message.from_user.first_name))
+    psn = message.text
+    cmd = psn.split("img ")
+    bot.send_message('893059', message.from_user.first_name + ' - ' + psn)
+    #openai here
+    response = openai.Image.create(
+      prompt=cmd[1],
+      n=1,
+      size="1024x1024"
+    )
+    image_url = response['data'][0]['url']
+    #end of openai 
+    bot.send_photo(message.chat.id, image_url)
 
 # Do not forget to register filters
 bot.add_custom_filter(custom_filters.TextMatchFilter())
