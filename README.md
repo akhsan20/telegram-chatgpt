@@ -7,5 +7,5 @@ pip install telebot <br>
 pip install pyTelegramBotAPI <br><br>
 
 demo <a href="https://t.me/kepo_bot">t.me/kepo_bot</a> <br>
-chat with prefix bot [space] then your text
+chat with prefix `bot [space] then your text` or `img [space] your text for ai generate image`
 
